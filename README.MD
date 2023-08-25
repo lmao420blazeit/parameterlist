@@ -12,3 +12,4 @@ The parameter list file is an index of the plant supplier SAP codes. This is spe
 
 - From 133 to 962 plant numbers
 - The file is up-to-date with the latest T001W_* Plants/Branches data SAP view
+- File maintained every day with cron scheduling
