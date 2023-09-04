@@ -6,9 +6,9 @@ from tqdm import tqdm
 from prefect.server.schemas.schedules import IntervalSchedule
 from prefect.deployments import Deployment
 
-user = ''
-password = ''
-dsn = ''
+user = 'SII3BRG'
+password = 'TBS1DEG_Pcl8fxp'
+dsn = 'REDLake_ZeusP_Consumer_DALI.world'
 sap_machine_list = ["p47", "p45", "p72", "p79", "p81", "p87", "p99", "POE", "PS0"]
 
 conn = cx_Oracle.connect(user=user, password=password, dsn=dsn)
@@ -39,7 +39,7 @@ def query_generator():
                 """.format(_sys = _sys)
 
                 _data = read_query(new_query)
-                data = data.append(_data, ignore_index=True)
+                data = pd.concat([data, _data], ignore_index=True)
                 time.sleep(1)
 
         data = data.drop_duplicates()
@@ -54,3 +54,4 @@ cron = Deployment.build_from_flow(
 
 if __name__ == "__main__":
         cron.apply()
+        query_generator()
